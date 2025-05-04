@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - run: pnpm semantic-release
+      - name: Verify token presence
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: echo "GH_TOKEN is ${GH_TOKEN:+set ✅}"
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: pnpm semantic-release
