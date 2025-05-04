@@ -22,9 +22,8 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      - run: pnpm ci
       - run: pnpm semantic-release
         env:
           GH_TOKEN: ${{ secrets.RELEASE_BOT_TOKEN }}
